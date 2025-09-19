@@ -1,4 +1,5 @@
 export const allowedUsers = [
     { username: "user1", password: "password1" },
     { username: "user2", password: "password2" },
+    { username: "iccoscco", password: "password" },
 ];
