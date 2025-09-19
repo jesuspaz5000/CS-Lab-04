@@ -1,4 +1,23 @@
+'use client'
+import React, { useState } from "react";
+import { isAllowedUser } from "../utils/auth";
+
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState<string | null>(null);
+  const [success, setSuccess] = useState<boolean | null>(null);
+
+  function handleLogin() {
+    const ok = isAllowedUser(username, password);
+    setSuccess(ok);
+    setMessage(ok ? "Login exitoso" : "Credenciales inválidas");
+    if (ok) {
+      setUsername("");
+      setPassword("");
+    }
+  }
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="w-md p-6 space-y-4 bg-white border rounded-lg">
@@ -18,6 +37,8 @@ export default function Login() {
               type="text" 
               placeholder="Username" 
               autoComplete="new-email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="mb-6">
@@ -30,13 +51,20 @@ export default function Login() {
               type="password" 
               placeholder="Password"
               autoComplete="new-password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="flex items-center justify-center">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full cursor-pointer" type="button">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full cursor-pointer" type="button" onClick={handleLogin}>
               Login
             </button>
           </div>
+          {message && (
+            <p className={`text-sm mt-2 text-center ${success ? 'text-green-600' : 'text-red-600'}`}>
+              {message}
+            </p>
+          )}
         </form>
       </div>
     </div>

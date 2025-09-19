@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:build": "tsc -p tsconfig.tests.json",
+    "test": "npm run -s test:build && node dist/tests/auth.test.js"
   },
   "dependencies": {
     "react": "19.1.0",
