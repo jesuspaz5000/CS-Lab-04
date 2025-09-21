@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const strict_1 = __importDefault(require("node:assert/strict"));
 const auth_1 = require("../src/utils/auth");
 function run() {
-    // Caso feliz
+    // Caso correcto
     strict_1.default.equal((0, auth_1.isAllowedUser)("user1", "password1"), true, "user1/password1 deberia ser valido");
     strict_1.default.equal((0, auth_1.isAllowedUser)("user2", "password2"), true, "user2/password2 deberia ser valido");
     // Credenciales incorrectas
